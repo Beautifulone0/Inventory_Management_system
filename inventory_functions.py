@@ -46,7 +46,7 @@ def search_product(file_name, search_name):
     search_name = search_name.lower()
     file = open(file_name, "r")
     for line in file:
-        parts = line.strip().split()
+        parts = line.strip().split(",")
         if parts[0] == search_name:
             return parts
     file.close()
