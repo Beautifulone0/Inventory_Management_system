@@ -16,7 +16,7 @@ def exit_inventory ():
     else:
         return False
 
-  inventory = {}
+inventory = {}
 
 while True:
     print("\n Inventory Management System")
@@ -30,27 +30,74 @@ while True:
     print("8. Exit")
     print("Select from above options 1-8 to add, update, remove, search products, check stock alerts, save or load inventory.")
 
-    option = input("Enter option: ")
+    option = int(input("Enter option: "))
 
     if option == 1:
-        add_product(inventory)
+        file_name = "inventory.txt"
+        name = input("Enter product name: ")
+        price = float(input("Enter product price: "))
+        quantity = int(input("Enter product quantity: "))
+        pro_desc = input("Enter Product description: ")
+
+        result = add_product(
+            file_name, 
+            name, 
+            price, 
+            quantity, 
+            pro_desc
+        )
+        print(result)
+    
     elif option == 2:
-        update_product(inventory)
+        file_name = "inventory.txt"
+        target_name = input("Enter the name of the product to update: ")
+        new_quantity = int(input("Enter the new quantity: "))
+        
+        update = update_product(
+            file_name, 
+            target_name, 
+            new_quantity
+        )
+        print(update)
+    
     elif option == 3:
-        remove_product(inventory)
+        file_name = "inventory.txt"
+        name = input("enter the name of product to remove/delete: ")
+
+        remove = remove_product(
+            file_name,
+            name
+        )
+        print(remove)
+
     elif option == 4:
-        search_product(inventory)
+        file_name = "inventory.txt"
+        search_name = input("Enter the name of the product to search: ")
+        search = search_product(
+            file_name,
+            search_name
+        )
+        if search:
+            print(f"Product found: {search[0].capitalize()}, Price: {search[1]}, Quantity: {search[2]}, Description: {search[3]}")
+        else:
+            print("Product not found")
+                
     elif option == 5:
-        low_stock(inventory)
+        file_name = "inventory.txt"
+        
+        low_stock(file_name)
+
     elif option == 6:
-        save_inventory(inventory)
+        file_name = "inventory.txt"
+        load = load_inventory( 
+            file_name
+        )
+        print(load)
+        
     elif option == 7:
-        load_inventory(inventory)
-    elif option == 8:
         print("Are you sure you want to exit this inventory management system?")
-        exit_inventory()
+        if exit_inventory():
+            break
     else:
         print("Invalid option selected. Please choose 1, 2, 3, 4, 5, 6, 7, or 8.")
-        if exit_inventory() == False:
-            break
 
