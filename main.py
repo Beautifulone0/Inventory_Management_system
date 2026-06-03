@@ -30,7 +30,7 @@ while True:
     print("7. Stock Alert")
     print("8. Load Inventory")
     print("9. Exit")
-    print("Select from above options 1-9 to add, update, remove, search products, check stock alerts, save or load inventory.")
+    print("Select from above options 1-9 to add, update price, update quantity, update description, remove, search products, check stock alerts, save or load inventory.")
 
     option = int(input("Enter option: "))
 
