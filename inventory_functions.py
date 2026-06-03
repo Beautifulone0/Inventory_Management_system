@@ -1,5 +1,4 @@
-# INVENT0
-ORY FUNCTIONS
+# INVENTORY FUNCTIONS
 
 # ✅ Add product function
 def add_product(file_name, name, price, quantity, pro_desc):
@@ -69,7 +68,7 @@ def update_desc(file_name, target_name, new_desc):
     with open(file_name, "w") as file:
         file.writelines(updated_lines)
 
-    print(f"Oh yeah we have updated the quantity of {target_name.capitalize()} to {new_quantity}")
+    print(f"Oh yeah we have updated the quantity of {target_name.capitalize()} to {new_desc}")
 
 
 # ✅ Remove product function
@@ -110,7 +109,7 @@ def low_stock(file_name, threshold=5):
         if quantity <= threshold:
             print(f"WARNING: {product_name.capitalize()} is low on stock! Only {quantity} left.")
         else:
-        	print(f"{product_name.capitalize() is in stock with {quantity} units.")
+        	print(f"{product_name.capitalize()}'' is in stock with {quantity} units.")
     file.close()
 
 # ✅ File handling (save/read inventory)
@@ -119,4 +118,5 @@ def load_inventory(file_name):
     content = file.read()
     return content
     file.close()
-	
+    
+    
