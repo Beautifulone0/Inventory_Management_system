@@ -8,7 +8,7 @@ def add_product(file_name, name, price, quantity, pro_desc):
     name = name.lower()
     with open(file_name, "a") as file:
         file.write(f"{name},{price},{quantity},{pro_desc}\n")
-    return f"{name.capitalize()} added to {file_name} successfully!"
+    return f"{name.capitalize()} added to inventory successfully!"
 
 #product update functions.
 # ✅ Update price function
@@ -37,7 +37,7 @@ def update_price(file_name, target_name, new_price):
         file.writelines(updated_lines)
        
     if product_found:
-        return f"Oh yeah we have updated the price of {target_name.capitalize()} to {new_price}"
+        return f"We have updated the price of {target_name.capitalize()} to {new_price}"
     else:
         return f"The Product '{target_name.capitalize()}' was not found in inventory."
   
@@ -68,7 +68,7 @@ def update_quantity(file_name, target_name, new_quantity):
         file.writelines(updated_lines)
         
     if product_found:
-        return f"Oh yeah we have updated the quantity of {target_name.capitalize()} to {new_quantity}."
+        return f"We have updated the quantity of {target_name.capitalize()} to {new_quantity}."
     else:
         return f"The Product '{target_name.capitalize()}' was not found in inventory."
 
@@ -95,12 +95,11 @@ def update_desc(file_name, target_name, new_desc):
         file.writelines(updated_lines)
 
     if product_found:
-        return f"Oh yeah we have updated the description of {target_name.capitalize()} to {new_desc}"
+        return f"We have updated the description of {target_name.capitalize()} to {new_desc}"
     else:
         return f"The Product '{target_name.capitalize()}' was not found in inventory."
 
 
-# ✅ Remove product function
 def remove_product(file_name, name):
     name = name.lower()
     updated_lines = []
@@ -152,10 +151,27 @@ def low_stock(file_name, threshold=5):
     file.close()
 
 # ✅ File handling (save/read inventory)
+# def load_inventory(file_name):
+#     file = open(file_name, "r")
+#     content = file.read()
+#     return content
+#     file.close()
+
 def load_inventory(file_name):
+    inventory = {}
+
     file = open(file_name, "r")
-    content = file.read()
-    return content
+    for line in file:
+        lines = line.strip().split(",")
+
+        name = lines[0]
+        price = lines[1]
+        quantity = lines[2]
+        description = lines[3]
+
+        inventory[name] = (price, quantity, description)
+
     file.close()
+    return inventory
     
     
