@@ -17,10 +17,27 @@ def exit_inventory ():
     else:
         return False
 
+# def load_inventory(file_name):
+#     inventory = {}
+
+#     file = open(file_name, "r")
+#     for line in file:
+#         lines = line.strip().split(",")
+
+#         name = lines[0]
+#         price = lines[1]
+#         quantity = lines[2]
+#         description = lines[3]
+
+#         inventory[name] = (price, quantity, description)
+
+#     file.close()
+#     return inventory
+
 inventory = {}
 
 while True:
-    print("\n Inventory Management System")
+    print("\nInventory Management System")
     print("1. Add Product")
     print("2. Update Price")
     print("3. Update Quantity")
@@ -30,14 +47,16 @@ while True:
     print("7. Stock Alert")
     print("8. Load Inventory")
     print("9. Exit")
-    print("Select from above options 1-9 to add, update price, update quantity, update description, remove, search products, check stock alerts, save or load inventory.")
+    # print("Select from above options 1-9 to * add,\n * update price,\n * update quantity,\n * update description,\n * remove,\n * search products,\n * check stock alerts,\n * or load inventory.")
 
     option = int(input("Enter option: "))
+
+    print("\n")
 
     if option == 1:
         file_name = "inventory.txt"
         name = input("Enter product name: ")
-        price = float(input("Enter product price: "))
+        price = int(float(input("Enter product price: ")))
         quantity = int(input("Enter product quantity: "))
         pro_desc = input("Enter Product description: ")
 
@@ -104,7 +123,12 @@ while True:
             search_name
         )
         if search:
-            print(f"Product found: {search[0].capitalize()}, Price: {search[1]}, Quantity: {search[2]}, Description: {search[3]}")
+            print(
+                f"Product Found:\n"
+                f"Product Name: {search[0].capitalize()}\n" 
+                f"Price: ₦{int(float(search[1])):,}\n" 
+                f"Quantity: {search[2]}, units of {search[3]}\n" 
+                f"Description: {search[3]}\n")
         else:
             print("Product not found")
                 
@@ -118,7 +142,21 @@ while True:
         load = load_inventory( 
             file_name
         )
-        print(load)
+        if load :
+            print("\nLoaded Inventory: ")
+            for name, details in load.items():
+                price = details[0]
+                quantity = details[1]
+                description =details[2]
+
+                print(
+                    f"Product Name: {name.capitalize()}\n" 
+                    f"Price: ₦{int(float(price)):,}\n" 
+                    f"Quantity: {quantity}\n" 
+                    f"Description: {description}\n"
+                )
+        else:
+            print("Inventory is empty")
         
     elif option == 9:
         print("Are you sure you want to exit this inventory management system?")
