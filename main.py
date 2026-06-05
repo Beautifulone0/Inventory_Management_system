@@ -49,7 +49,14 @@ while True:
     print("9. Exit")
     # print("Select from above options 1-9 to * add,\n * update price,\n * update quantity,\n * update description,\n * remove,\n * search products,\n * check stock alerts,\n * or load inventory.")
 
-    option = int(input("Enter option: "))
+    try:
+        option = int(input("Enter option 1-9: "))
+
+        if option < 1 or option > 9:
+            print("Please input numbers from 1-9")
+            continue
+    except ValueError:
+        print("Please input numbers from 1-9")
 
     print("\n")
 
