@@ -2,19 +2,27 @@
 
 # ✅ Add product function
 def add_product(file_name, name, price, quantity, pro_desc):
+    try:
+        price = int(float(price))
+    except ValueError:
+        return f"Error: '{price}' is not valid. Please use a number."
+    try:
+        quantity = int(quantity)
+    except ValueError:
+        return f"Error: '{quantity}' is not valid. Please use a number."
     if search_product(file_name, name) is not None:
         return f"Error: {name.capitalize()} already exists! Use the update function instead."
         
     name = name.lower()
     with open(file_name, "a") as file:
         file.write(f"{name},{price},{quantity},{pro_desc}\n")
-    return f"{name.capitalize()} added to inventory successfully!"
+    return f"{name.capitalize()} added to {file_name} successfully!"
 
 #product update functions.
 # ✅ Update price function
 def update_price(file_name, target_name, new_price):
     try:
-        new_price = float(new_price)
+        new_price = int(float(new_price))
     except ValueError:
         return f"Error: '{new_price}' is not valid. Please use a number."
         
@@ -37,7 +45,7 @@ def update_price(file_name, target_name, new_price):
         file.writelines(updated_lines)
        
     if product_found:
-        return f"We have updated the price of {target_name.capitalize()} to {new_price}"
+        return f"Oh yeah we have updated the price of {target_name.capitalize()} to {new_price}"
     else:
         return f"The Product '{target_name.capitalize()}' was not found in inventory."
   
@@ -68,7 +76,7 @@ def update_quantity(file_name, target_name, new_quantity):
         file.writelines(updated_lines)
         
     if product_found:
-        return f"We have updated the quantity of {target_name.capitalize()} to {new_quantity}."
+        return f"Oh yeah we have updated the quantity of {target_name.capitalize()} to {new_quantity}."
     else:
         return f"The Product '{target_name.capitalize()}' was not found in inventory."
 
@@ -95,15 +103,16 @@ def update_desc(file_name, target_name, new_desc):
         file.writelines(updated_lines)
 
     if product_found:
-        return f"We have updated the description of {target_name.capitalize()} to {new_desc}"
+        return f"Oh yeah we have updated the description of {target_name.capitalize()} to {new_desc}"
     else:
         return f"The Product '{target_name.capitalize()}' was not found in inventory."
 
 
+# ✅ Remove product function
 def remove_product(file_name, name):
     name = name.lower()
     updated_lines = []
-    if search_product(file_name, name) is not None:
+    if search_product(file_name, name) is None:
         return f"Error: {name.capitalize()} doesn't' exist!"
     
     file = open(file_name, "r")
@@ -151,12 +160,6 @@ def low_stock(file_name, threshold=5):
     file.close()
 
 # ✅ File handling (save/read inventory)
-# def load_inventory(file_name):
-#     file = open(file_name, "r")
-#     content = file.read()
-#     return content
-#     file.close()
-
 def load_inventory(file_name):
     inventory = {}
 
