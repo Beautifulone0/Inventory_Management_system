@@ -11,7 +11,7 @@ from inventory_functions import (
 
 def exit_inventory ():
     choice = input("Yes / No : ")
-    if choice.lower() == "yes":
+    if choice.lower() == "yes" or "y":
         print("Thank you for using IMS(Inventory Management System)")
         return True
     else:
@@ -63,8 +63,8 @@ while True:
     if option == 1:
         file_name = "inventory.txt"
         name = input("Enter product name: ")
-        price = int(float(input("Enter product price: ")))
-        quantity = int(input("Enter product quantity: "))
+        price = input("Enter product price: ")
+        quantity = input("Enter product quantity: ")
         pro_desc = input("Enter Product description: ")
 
         result = add_product(
@@ -79,7 +79,7 @@ while True:
     elif option == 2:
         file_name = "inventory.txt"
         target_name = input("Enter the name of the product to update: ")
-        new_price = float(input("Enter the new price: "))
+        new_price = input("Enter the new price: ")
 
         update = update_price(
             file_name, 
@@ -91,7 +91,7 @@ while True:
     elif option == 3:
         file_name = "inventory.txt"
         target_name = input("Enter the name of the product to update: ")
-        new_quantity = int(input("Enter the new quantity: "))
+        new_quantity = input("Enter the new quantity: ")
 
         update = update_quantity(
             file_name, 
@@ -159,7 +159,7 @@ while True:
                 print(
                     f"Product Name: {name.capitalize()}\n" 
                     f"Price: ₦{int(float(price)):,}\n" 
-                    f"Quantity: {quantity}\n" 
+                    f"Quantity: {quantity}pcs\n" 
                     f"Description: {description}\n"
                 )
         else:
