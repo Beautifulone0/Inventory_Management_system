@@ -1,0 +1,5 @@
+mouse,2500.0,7,Wireless black mouse
+laptop,500000.0,10,active intel core
+beach ball,15000.0,4,New quality beach ball
+laptop,500000.0,10,active intel core
+keyboard,15000,3,Ipad keyboard
