@@ -11,7 +11,7 @@ from inventory_functions import (
 
 def exit_inventory ():
     choice = input("Yes / No : ")
-    if choice.lower() == "yes" or "y":
+    if choice.lower() == "yes" or choice.lower() == "y":
         print("Thank you for using IMS(Inventory Management System)")
         return True
     else:
